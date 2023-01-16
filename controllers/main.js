@@ -18,14 +18,15 @@ const logIn = async (req, res) => {
 const dashBoard = async (req, res) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startWith("Bearer")) {
-    throw new CustomApiError("Invalid token", 404);
+    throw new CustomApiError("Aunthentication error, no token provided", 401);
   }
+
+  const token = authHeader.split(" ")[1];
+
   const luckyNumber = Math.floor(Math.random() * 100);
   res.status(200).json({
     msg: `Hello john dee`,
     secret: `Here is your authorizwed data your lucky number is ${luckyNumber}`,
   });
 };
-// const id = Date().getDate();
-// console.log(id);
 module.exports = { logIn, dashBoard };
