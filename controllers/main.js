@@ -6,6 +6,12 @@ const logIn = async (req, res) => {
   if (!username || !password) {
     throw new CustomApiError("Please provide email and password", 404);
   }
+
+  const id = new Date.now().getDate.now();
+
+  const token = jwt.sign({ id, username }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
   res.send("Fake login/registser/signup");
 };
 
