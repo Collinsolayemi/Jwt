@@ -16,6 +16,10 @@ const logIn = async (req, res) => {
 };
 
 const dashBoard = async (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startWith("Bearer")) {
+    throw new CustomApiError("Invalid token", 404);
+  }
   const luckyNumber = Math.floor(Math.random() * 100);
   res.status(200).json({
     msg: `Hello john dee`,
