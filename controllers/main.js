@@ -1,5 +1,5 @@
-const { BadRequestError } = require("../error");
 const jwt = require("jsonwebtoken");
+const { BadRequestError } = require("../error");
 
 const logIn = async (req, res) => {
   const { username, password } = req.body;
